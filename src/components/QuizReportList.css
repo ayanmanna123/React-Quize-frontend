@@ -1,0 +1,117 @@
+.quiz-report-container {
+  padding: 2rem;
+  background: transparent;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+/* Heading */
+.quiz-report-container h2 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 1.5rem;
+}
+
+.highest-score-section {
+  margin-bottom: 2rem;
+}
+
+.highest-score-section h3 {
+  font-size: 1.8rem;
+  color: #5a2971;
+  margin-bottom: 1rem;
+}
+
+/* Highest score card style */
+.highlight {
+  background-color: #f8f0ff;
+  color: #5a2971;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(90, 41, 113, 0.1);
+  display: inline-block;
+}
+
+/* Report list grid layout */
+.quiz-report-list {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .quiz-report-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .quiz-report-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Report card style */
+.quiz-report-item {
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+  padding: 1.2rem;
+  transition: transform 0.2s;
+  opacity: 0;
+  transform: translateX(100px);
+  list-style: none;
+}
+
+.quiz-report-item:hover {
+  transform: translateY(-4px);
+}
+
+/* Text inside card */
+.quiz-report-item p {
+  margin: 0.4rem 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+.quiz-report-item strong {
+  color: #555;
+  font-weight: 600;
+}
+
+/* Date style */
+.taken-on {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: #777;
+  font-style: italic;
+}
+
+/* Scroll animations */
+.slide-in-left {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 0.6s ease-out;
+}
+
+.slide-in-right {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 0.6s ease-out;
+}
+
+.slide-out-left {
+  opacity: 0;
+  transform: translateX(-100px);
+  transition: all 0.6s ease-out;
+}
+
+.slide-out-right {
+  opacity: 0;
+  transform: translateX(100px);
+  transition: all 0.6s ease-out;
+}
