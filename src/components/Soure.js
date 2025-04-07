@@ -63,7 +63,7 @@ const QuizReportList = () => {
       <h2>Your Quiz Reports</h2>
 
       <div className="highest-score-section">
-        <h3> Highest Score</h3>
+        <h3>🏆 Highest Score</h3>
         <div className="quiz-report-item highlight">
           <p><strong>Category:</strong> {highestScore.category}</p>
           <p><strong>Difficulty:</strong> {highestScore.difficulty}</p>
