@@ -9,7 +9,7 @@ const TopScores = () => {
   useEffect(() => {
     const fetchScores = async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/report/all');
+        const res = await fetch(`${import.meta.env.NEXT_PUBLIC_HOST}/api/report/all`);
         const data = await res.json();
 
         // Sort scores from highest to lowest

@@ -109,7 +109,7 @@ export default function App() {
     const token = localStorage.getItem("token");
 
     try {
-      const response = await fetch("http://localhost:5000/api/report", {
+      const response = await fetch(`${import.meta.env.NEXT_PUBLIC_HOST}/api/report`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

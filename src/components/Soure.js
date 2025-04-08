@@ -11,7 +11,7 @@ const QuizReportList = () => {
   useEffect(() => {
     const fetchReports = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/report/myscores", {
+        const res = await fetch(`${import.meta.env.NEXT_PUBLIC_HOST}/api/report/myscores`, {
           headers: {
             "Content-Type": "application/json",
             "auth-token": authToken,
