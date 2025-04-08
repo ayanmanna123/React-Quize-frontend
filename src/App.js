@@ -20,8 +20,8 @@ const App = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const endpoint = isLogin
-      ? `${import.meta.env.NEXT_PUBLIC_HOST}/api/auth/login`
-      : `${import.meta.env.NEXT_PUBLIC_HOST}/api/auth/createuser`;
+      ? `${import.meta.env.VITE_PUBLIC_HOST}/api/auth/login`
+      : `${import.meta.env.VITE_PUBLIC_HOST}/api/auth/createuser`;
        
 
     const response = await fetch(endpoint, {
