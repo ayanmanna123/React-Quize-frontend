@@ -19,10 +19,9 @@ const App = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const endpoint = isLogin
-      ? "react-quize-backend.vercel.app/api/auth/login"
-      : "react-quize-backend.vercel.app/api/auth/createuser";
-
+   const endpoint = isLogin
+  ? "https://react-quize-backend.vercel.app/api/auth/login"
+  : "https://react-quize-backend.vercel.app/api/auth/createuser";
     const response = await fetch(endpoint, {
       method: "POST",
       headers: {
