@@ -22,8 +22,8 @@ const App = () => {
     console.log("VITE_PUBLIC_HOST:", import.meta.env.VITE_PUBLIC_HOST);
 
     const endpoint = isLogin
-    ? `${import.meta.env.VITE_PUBLIC_HOST}/api/auth/login`
-    : `${import.meta.env.VITE_PUBLIC_HOST}/api/auth/createuser`;
+    ? "react-quize-backend.vercel.app/api/auth/login"
+    : "react-quize-backend.vercel.app/api/auth/createuser";
     
        
 
