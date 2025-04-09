@@ -109,7 +109,7 @@ export default function App() {
     const token = localStorage.getItem("token");
 
     try {
-      const response = await fetch(`${import.meta.env.NEXT_PUBLIC_HOST}/api/report`, {
+      const response = await fetch("https://react-quize-backend.vercel.app/api/report", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
