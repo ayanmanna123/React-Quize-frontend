@@ -11,7 +11,7 @@ const QuizReportList = () => {
   useEffect(() => {
     const fetchReports = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_PUBLIC_HOST}/api/report/myscores`, {
+        const res = await fetch("https://react-quize-backend.vercel.app/api/report/myscores", {
           headers: {
             "Content-Type": "application/json",
             "auth-token": authToken,
