@@ -19,13 +19,9 @@ const App = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("VITE_PUBLIC_HOST:", import.meta.env.VITE_PUBLIC_HOST);
-
     const endpoint = isLogin
-    ? "react-quize-backend.vercel.app/api/auth/login"
-    : "react-quize-backend.vercel.app/api/auth/createuser";
-    
-       
+      ? "react-quize-backend.vercel.app/api/auth/login"
+      : "react-quize-backend.vercel.app/api/auth/createuser";
 
     const response = await fetch(endpoint, {
       method: "POST",
