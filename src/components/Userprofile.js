@@ -9,7 +9,7 @@ const Userprofile = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/auth/getuser", {
+        const res = await fetch("https://react-quize-backend.vercel.app/api/auth/getuser", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
