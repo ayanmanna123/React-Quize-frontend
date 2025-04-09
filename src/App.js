@@ -19,9 +19,12 @@ const App = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("VITE_PUBLIC_HOST:", import.meta.env.VITE_PUBLIC_HOST);
+
     const endpoint = isLogin
-      ? `${import.meta.env.VITE_PUBLIC_HOST}/api/auth/login`
-      : `${import.meta.env.VITE_PUBLIC_HOST}/api/auth/createuser`;
+    ? `${import.meta.env.VITE_PUBLIC_HOST}/api/auth/login`
+    : `${import.meta.env.VITE_PUBLIC_HOST}/api/auth/createuser`;
+    
        
 
     const response = await fetch(endpoint, {
