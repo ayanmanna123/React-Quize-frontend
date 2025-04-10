@@ -35,7 +35,7 @@ const App = () => {
     });
 
     const json = await response.json();
-    console.log(json);
+     
 
     // Auto login & redirect for login
     if (isLogin) {
@@ -61,7 +61,7 @@ const App = () => {
     );
 
     const sendCodeJson = await sendCodeRes.json();
-    console.log(sendCodeJson);
+     
 
     if (sendCodeJson.success) {
       setShowVerify(true);
@@ -81,7 +81,7 @@ const App = () => {
     );
 
     const json = await res.json();
-    console.log(json);
+     
     if (json.success) {
       alert("Email verified successfully!");
       setIsLogin(true);

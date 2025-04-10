@@ -128,7 +128,7 @@ export default function App() {
         throw new Error(data.error || "Failed to save report");
       }
 
-      console.log("✅ Quiz report saved:", data);
+      
     } catch (err) {
       console.error("❌ Failed to save quiz report:", err.message);
     }
