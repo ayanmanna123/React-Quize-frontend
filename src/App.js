@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./styles.css";
- 
 
 const App = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -38,33 +37,36 @@ const App = () => {
     const json = await response.json();
     console.log(json);
 
-    if (json.success) {
-      if (!isLogin) {
-        // Signup success: send email verification
-        await fetch("https://react-quize-backend.vercel.app/api/auth/send-code", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email: credentials.email }),
-        });
-        setShowVerify(true);
-      } else {
-        // Login success
-        localStorage.setItem("token", json.authtoken);
-        navigate("/home");
+    const sendCodeRes = await fetch(
+      "https://react-quize-backend.vercel.app/api/auth/send-verification-code",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: credentials.email }),
       }
+    );
+
+    const sendCodeJson = await sendCodeRes.json();
+    console.log(sendCodeJson);
+
+    if (sendCodeJson.success) {
+      setShowVerify(true);
     } else {
-      alert("Invalid credentials");
+      alert("Failed to send verification code. Please try again.");
     }
   };
 
   const handleVerifyCode = async () => {
-    const res = await fetch("https://react-quize-backend.vercel.app/api/auth/verify-code", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: credentials.email, code }),
-    });
+    const res = await fetch(
+      "https://react-quize-backend.vercel.app/api/auth/verify-code",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: credentials.email, code }),
+      }
+    );
 
     const json = await res.json();
     console.log(json);
@@ -176,7 +178,10 @@ const App = () => {
             <div className="toggle-panel toggle-left">
               <h1>Hello, Welcome!</h1>
               <p>Don't have an account?</p>
-              <button className="btn register-btn" onClick={() => setIsLogin(false)}>
+              <button
+                className="btn register-btn"
+                onClick={() => setIsLogin(false)}
+              >
                 Register
               </button>
             </div>
@@ -184,7 +189,10 @@ const App = () => {
             <div className="toggle-panel toggle-right">
               <h1>Welcome Back!</h1>
               <p>Already have an account?</p>
-              <button className="btn login-btn" onClick={() => setIsLogin(true)}>
+              <button
+                className="btn login-btn"
+                onClick={() => setIsLogin(true)}
+              >
                 Login
               </button>
             </div>
