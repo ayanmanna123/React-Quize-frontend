@@ -37,6 +37,18 @@ const App = () => {
     const json = await response.json();
     console.log(json);
 
+    // Auto login & redirect for login
+    if (isLogin) {
+      if (json.success) {
+        localStorage.setItem("token", json.authtoken);
+        navigate("/"); // change to "/quiz" or "/dashboard" if needed
+      } else {
+        alert("Invalid login credentials.");
+      }
+      return;
+    }
+
+    // Signup path → Send verification code
     const sendCodeRes = await fetch(
       "https://react-quize-backend.vercel.app/api/auth/send-verification-code",
       {
@@ -74,6 +86,9 @@ const App = () => {
       alert("Email verified successfully!");
       setIsLogin(true);
       setShowVerify(false);
+
+      // ✅ Redirect after successful verification
+      navigate("/home"); // change to "/quiz" or "/dashboard" if you want
     } else {
       alert("Invalid or expired code.");
     }
@@ -171,7 +186,6 @@ const App = () => {
         </div>
       )}
 
-      {/* Toggle section */}
       {!showVerify && (
         <div className="toggle-box">
           {isLogin ? (
