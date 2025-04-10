@@ -9,13 +9,16 @@ const Userprofile = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await fetch("https://react-quize-backend.vercel.app/api/auth/getuser", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "auth-token": authToken,
-          },
-        });
+        const res = await fetch(
+          "https://react-quize-backend.vercel.app/api/auth/getuser",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "auth-token": authToken,
+            },
+          }
+        );
 
         const data = await res.json();
         setUser(data);
@@ -50,11 +53,7 @@ const Userprofile = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link
-                  className="nav-link "
-                  aria-current="page"
-                  to="/home"
-                >
+                <Link className="nav-link " aria-current="page" to="/home">
                   Home
                 </Link>
               </li>
@@ -79,10 +78,14 @@ const Userprofile = () => {
             <strong>Email:</strong> {user.email}
           </p>
           <p>
-          <em>
-  Joined on: {new Date(user.date).toISOString().split("T")[0]}
-</em>
-
+            <em>
+              <em>
+                Joined on:{" "}
+                {user.date
+                  ? new Date(user.date).toISOString().split("T")[0]
+                  : "Unknown"}
+              </em>
+            </em>
           </p>
           <li className="nav-item">
             <Link className="nav-link" to="/">
