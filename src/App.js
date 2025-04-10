@@ -41,7 +41,7 @@ const App = () => {
     if (isLogin) {
       if (json.success) {
         localStorage.setItem("token", json.authtoken);
-        navigate("/"); // change to "/quiz" or "/dashboard" if needed
+        navigate("/home"); // change to "/quiz" or "/dashboard" if needed
       } else {
         alert("Invalid login credentials.");
       }
