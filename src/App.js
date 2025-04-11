@@ -74,7 +74,7 @@ const App = () => {
   
     if (sendCodeJson.success) {
       setShowVerify(true);
-      alert("Verification code sent to your email.");
+      
     } else {
       alert("Failed to send verification code. Please try again.");
     }
@@ -94,7 +94,7 @@ const App = () => {
     const json = await res.json();
     
     if (json.success) {
-      alert("Email verified successfully!");
+      
       setIsLogin(true);
       setShowVerify(false);
 
@@ -108,20 +108,32 @@ const App = () => {
   return (
     <div className={`container ${isLogin ? "" : "active"}`}>
       {showVerify ? (
-        <div className="form-box verify">
-          <h1>Verify Your Email</h1>
-          <p>Enter the 6-digit code sent to {credentials.email}</p>
-          <input
-            type="text"
-            placeholder="Enter verification code"
-            value={code}
-            onChange={(e) => setCode(e.target.value)}
-            maxLength={6}
-          />
-          <button className="btn" onClick={handleVerifyCode}>
-            Verify
-          </button>
+        <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
+        <div className="card shadow p-4" style={{ width: '100%', maxWidth: '400px' }}>
+          <h3 className="text-center mb-3">Verify Your Email</h3>
+          <p className="text-center text-muted mb-4">
+            Enter the 6-digit code sent to <br />
+            <strong>{credentials.email}</strong>
+          </p>
+          <div className="mb-3">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Enter verification code"
+              value={code}
+              onChange={(e) => setCode(e.target.value)}
+              maxLength={6}
+            />
+          </div>
+          <div className="d-grid">
+            <button className="btn btn-primary" onClick={handleVerifyCode}>
+              Verify
+            </button>
+          </div>
         </div>
+      </div>
+      
+      
       ) : isLogin ? (
         <div className="form-box login">
           <form onSubmit={handleSubmit}>
