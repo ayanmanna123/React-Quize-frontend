@@ -21,11 +21,11 @@ const App = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     const endpoint = isLogin
       ? "https://react-quize-backend.vercel.app/api/auth/login"
       : "https://react-quize-backend.vercel.app/api/auth/createuser";
-
+  
     const response = await fetch(endpoint, {
       method: "POST",
       headers: {
@@ -33,22 +33,32 @@ const App = () => {
       },
       body: JSON.stringify(credentials),
     });
-
+  
     const json = await response.json();
-     
-
-    // Auto login & redirect for login
+  
+    // Login
     if (isLogin) {
       if (json.success) {
         localStorage.setItem("token", json.authtoken);
-        navigate("/home"); // change to "/quiz" or "/dashboard" if needed
+        navigate("/home");
+        alert("Login successful!");
       } else {
         alert("Invalid login credentials.");
       }
       return;
     }
-
-    // Signup path → Send verification code
+  
+    // Signup
+    if (!json.success) {
+      if (json.error === "User with this email already exists") {
+        alert("User already exists. Please log in instead.");
+      } else {
+        alert("Signup failed. Please try again.");
+      }
+      return;
+    }
+  
+    // Send verification code after signup
     const sendCodeRes = await fetch(
       "https://react-quize-backend.vercel.app/api/auth/send-verification-code",
       {
@@ -59,16 +69,17 @@ const App = () => {
         body: JSON.stringify({ email: credentials.email }),
       }
     );
-
+  
     const sendCodeJson = await sendCodeRes.json();
-     
-
+  
     if (sendCodeJson.success) {
       setShowVerify(true);
+      alert("Verification code sent to your email.");
     } else {
       alert("Failed to send verification code. Please try again.");
     }
   };
+  
 
   const handleVerifyCode = async () => {
     const res = await fetch(
@@ -81,7 +92,7 @@ const App = () => {
     );
 
     const json = await res.json();
-     
+    
     if (json.success) {
       alert("Email verified successfully!");
       setIsLogin(true);
