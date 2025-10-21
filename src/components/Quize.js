@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
-import { useNavigate } from "react-router-dom";
 
 const categories = [
   { id: 9, name: "General Knowledge" },
@@ -42,8 +41,6 @@ export default function App() {
   const [alerted, setAlerted] = useState(false);
   const [amount, setAmount] = useState(10);
   const [questionType, setQuestionType] = useState("multiple");
-
-  const navigate = useNavigate();
 
   const fetchQuestions = async (categoryId, difficulty) => {
     try {
@@ -127,8 +124,6 @@ export default function App() {
       if (!response.ok) {
         throw new Error(data.error || "Failed to save report");
       }
-
-      
     } catch (err) {
       console.error("❌ Failed to save quiz report:", err.message);
     }
@@ -149,6 +144,7 @@ export default function App() {
 
     const interval = setInterval(() => setQuizTime((prev) => prev - 1), 1000);
     return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [quizTime, questions, showScore, alerted]);
 
   const formatTime = (seconds) => {
@@ -158,16 +154,7 @@ export default function App() {
     const sec = (seconds % 60).toString().padStart(2, "0");
     return `${min}:${sec}`;
   };
-
-  const getOptionStyle = (opt, index) => {
-    if (!showScore) return {};
-    const correct = questions[index].answer;
-    const selected = answers[index];
-
-    if (opt === correct) return { backgroundColor: "#c8f7c5" };
-    if (opt === selected) return { backgroundColor: "#f7c5c5" };
-    return {};
-  };
+ 
 
   return (
     <div className="quiz-container">

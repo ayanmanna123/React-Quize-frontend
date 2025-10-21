@@ -14,10 +14,6 @@ root.render(
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="/home" element={<Home />} />
-      {/* <Route path="/home" element={<Page />} /> */}
-      {/* <Route path="/quize" element={<Quize />} />
-      <Route path="/scoure" element={<Soure />} /> */}
-
       <Route path="/profile" element={<Userprofile />} />
       <Route path="/termsandconditions" element={<TermsAndConditions />} />
     </Routes>

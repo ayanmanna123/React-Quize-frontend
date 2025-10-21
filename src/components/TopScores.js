@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useRef } from 'react';
-import './TopScores.css';
+import React, { useEffect, useState, useRef } from "react";
+import "./TopScores.css";
 
 const TopScores = () => {
   const [scores, setScores] = useState([]);
@@ -9,7 +9,9 @@ const TopScores = () => {
   useEffect(() => {
     const fetchScores = async () => {
       try {
-        const res = await fetch("https://react-quize-backend.vercel.app/api/report/all");
+        const res = await fetch(
+          "https://react-quize-backend.vercel.app/api/report/all"
+        );
         const data = await res.json();
 
         // Sort scores from highest to lowest
@@ -31,23 +33,24 @@ const TopScores = () => {
         entries.forEach((entry) => {
           const element = entry.target;
           if (entry.isIntersecting) {
-            element.classList.add('visible');
+            element.classList.add("visible");
           } else {
-            element.classList.remove('visible');
+            element.classList.remove("visible");
           }
         });
       },
-      {
-        threshold: 0.2,
-      }
+      { threshold: 0.2 }
     );
 
-    cardsRef.current.forEach((card) => {
+    // ✅ Copy the current ref snapshot to avoid ESLint warning
+    const currentCards = cardsRef.current;
+
+    currentCards.forEach((card) => {
       if (card) observer.observe(card);
     });
 
     return () => {
-      cardsRef.current.forEach((card) => {
+      currentCards.forEach((card) => {
         if (card) observer.unobserve(card);
       });
     };
@@ -64,14 +67,24 @@ const TopScores = () => {
         <div className="score-list">
           {scores.map((item, idx) => (
             <div
-              className={`score-card ${idx % 2 === 0 ? 'animate-left' : 'animate-right'}`}
+              className={`score-card ${
+                idx % 2 === 0 ? "animate-left" : "animate-right"
+              }`}
               key={idx}
               ref={(el) => (cardsRef.current[idx] = el)}
             >
-              <h5><strong>Name:</strong> {item.name}</h5>
-              <p><strong>Score:</strong> {item.score}</p>
-              <p><strong>Category:</strong> {item.category}</p>
-              <p><strong>Difficulty:</strong> {item.difficulty}</p>
+              <h5>
+                <strong>Name:</strong> {item.name}
+              </h5>
+              <p>
+                <strong>Score:</strong> {item.score}
+              </p>
+              <p>
+                <strong>Category:</strong> {item.category}
+              </p>
+              <p>
+                <strong>Difficulty:</strong> {item.difficulty}
+              </p>
             </div>
           ))}
         </div>
@@ -81,4 +94,3 @@ const TopScores = () => {
 };
 
 export default TopScores;
-
